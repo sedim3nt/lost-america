@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bone: #FAF7F2;
+  --color-sand: #D4C5A9;
+  --color-coyote: #8B6F47;
+  --color-dark-earth: #2C1810;
+  --color-desert-sunset: #C4652A;
+  --color-charcoal: #1A1A1A;
+
+  --font-syne: "Syne", sans-serif;
+  --font-newsreader: "Newsreader", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-newsreader);
+  background-color: var(--color-bone);
+  color: var(--color-dark-earth);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-syne);
+}
+
+::selection {
+  background-color: var(--color-desert-sunset);
+  color: white;
+}
+
+/* Masonry grid */
+.masonry-grid {
+  column-count: 1;
+  column-gap: 1rem;
+}
+@media (min-width: 640px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+@media (min-width: 1024px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+.masonry-grid > * {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
