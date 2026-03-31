@@ -36,7 +36,7 @@ export default async function PhotoPage({ params }: Props) {
         <img
           src={image.photoUrl}
           alt={image.title}
-          className="w-full max-h-[80vh] object-contain bg-charcoal/5 rounded-sm"
+          className="max-w-full max-h-[80vh] object-contain bg-charcoal/5 rounded-sm mx-auto"
         />
       </div>
 
