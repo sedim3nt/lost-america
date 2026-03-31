@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Lost America — Historical Photography Archive",
-  description:
+  openGraph: { title: 'Lost America — Historical Photography', description: '1000 photographs from the Library of Congress. Every photo is a time machine.', images: ['https://raw.githubusercontent.com/sedim3nt/spirittree-assets/main/og/lostamerica-og.png'], type: 'website' }, twitter: { card: 'summary_large_image', images: ['https://raw.githubusercontent.com/sedim3nt/spirittree-assets/main/og/lostamerica-og.png'] }, description:
     "A museum-quality digital exhibition of American history through 1,000 public domain photographs from the Library of Congress.",
   icons: {
     icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>",
