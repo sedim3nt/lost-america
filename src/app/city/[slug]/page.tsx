@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getUniqueCities, getImagesByCity } from "@/lib/data";
 import PhotoGrid from "@/components/ui/PhotoGrid";
+import GhostNarrator from "@/components/features/GhostNarrator";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -34,7 +35,17 @@ export default async function CityPage({ params }: Props) {
       <p className="text-coyote font-newsreader mb-10">
         {images.length} photographs
       </p>
-      <PhotoGrid images={images} />
+
+      <GhostNarrator
+        name={city.name}
+        location={city.name}
+        era={images[0]?.displayEra || ''}
+        description={`A collection of ${images.length} historical photographs from ${city.name}.`}
+      />
+
+      <div className="mt-10">
+        <PhotoGrid images={images} />
+      </div>
     </div>
   );
 }

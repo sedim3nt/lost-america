@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllImages, getImageById, getRelatedImages, getAdjacentImages } from "@/lib/data";
 import PhotoCard from "@/components/ui/PhotoCard";
+import GhostNarrator from "@/components/features/GhostNarrator";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -74,6 +75,13 @@ export default async function PhotoPage({ params }: Props) {
         <p className="mt-4 text-xs text-coyote/60">
           Photographs from the Library of Congress, public domain.
         </p>
+
+        <GhostNarrator
+          name={image.title}
+          location={image.cityName}
+          era={image.displayEra}
+          description={`A photograph titled "${image.title}" from ${image.year} in ${image.cityName}.`}
+        />
       </div>
 
       <div className="mt-10 flex justify-between items-center border-t border-sand/50 pt-6">
