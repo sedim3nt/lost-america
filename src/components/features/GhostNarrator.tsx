@@ -7,18 +7,29 @@ interface GhostNarratorProps {
   location: string;
   era: string;
   description?: string;
+  prewrittenNarrative?: string;
 }
 
-export default function GhostNarrator({ name, location, era, description }: GhostNarratorProps) {
+export default function GhostNarrator({ name, location, era, description, prewrittenNarrative }: GhostNarratorProps) {
   const [narration, setNarration] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
   const [hasSpoken, setHasSpoken] = useState(false);
+  const [showingPrewritten, setShowingPrewritten] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  function handleRevealPrewritten() {
+    if (prewrittenNarrative) {
+      setHasSpoken(true);
+      setShowingPrewritten(true);
+      setNarration(prewrittenNarrative);
+    }
+  }
 
   async function handleNarrate() {
     setIsStreaming(true);
     setNarration('');
     setHasSpoken(true);
+    setShowingPrewritten(false);
 
     try {
       const res = await fetch('/api/narrate', {
@@ -54,7 +65,7 @@ export default function GhostNarrator({ name, location, era, description }: Ghos
     <div ref={containerRef} className="mt-8">
       {!hasSpoken && (
         <button
-          onClick={handleNarrate}
+          onClick={prewrittenNarrative ? handleRevealPrewritten : handleNarrate}
           className="group flex items-center gap-2 font-syne text-sm text-coyote/70 hover:text-desert-sunset transition-all duration-300 cursor-pointer"
         >
           <span className="inline-block w-5 h-px bg-coyote/30 group-hover:bg-desert-sunset group-hover:w-8 transition-all duration-300" />
@@ -73,12 +84,24 @@ export default function GhostNarrator({ name, location, era, description }: Ghos
               )}
             </p>
             {!isStreaming && narration && (
-              <button
-                onClick={handleNarrate}
-                className="mt-4 font-syne text-xs text-coyote/40 hover:text-coyote/70 transition-colors cursor-pointer"
-              >
-                Speak again
-              </button>
+              <div className="mt-4 flex gap-4">
+                {showingPrewritten && (
+                  <button
+                    onClick={handleNarrate}
+                    className="font-syne text-xs text-coyote/40 hover:text-coyote/70 transition-colors cursor-pointer"
+                  >
+                    Hear another voice
+                  </button>
+                )}
+                {!showingPrewritten && (
+                  <button
+                    onClick={handleNarrate}
+                    className="font-syne text-xs text-coyote/40 hover:text-coyote/70 transition-colors cursor-pointer"
+                  >
+                    Speak again
+                  </button>
+                )}
+              </div>
             )}
           </div>
         </div>

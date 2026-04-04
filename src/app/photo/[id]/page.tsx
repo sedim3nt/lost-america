@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllImages, getImageById, getRelatedImages, getAdjacentImages } from "@/lib/data";
 import PhotoCard from "@/components/ui/PhotoCard";
 import GhostNarrator from "@/components/features/GhostNarrator";
+import ghostNarratives from "@/lib/ghost-narratives.json";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -81,6 +82,7 @@ export default async function PhotoPage({ params }: Props) {
           location={image.cityName}
           era={image.displayEra}
           description={`A photograph titled "${image.title}" from ${image.year} in ${image.cityName}.`}
+          prewrittenNarrative={(ghostNarratives as Record<string, string>)[image.citySlug]}
         />
       </div>
 
