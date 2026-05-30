@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lostamerica.spirittree.dev"),
   title: "Lost America — Historical Photography Archive",
   openGraph: { title: 'Lost America — Historical Photography', description: '1000 photographs from the Library of Congress. Every photo is a time machine.', images: ['https://raw.githubusercontent.com/sedim3nt/spirittree-assets/main/og/lostamerica-og.png'], type: 'website' }, twitter: { card: 'summary_large_image', images: ['https://raw.githubusercontent.com/sedim3nt/spirittree-assets/main/og/lostamerica-og.png'] }, description:
     "A museum-quality digital exhibition of American history through 1,000 public domain photographs from the Library of Congress.",
